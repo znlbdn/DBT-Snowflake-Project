@@ -91,3 +91,67 @@ snowsql
 Note : you can see the account_name of your snowflake on snowflake dahsboard, in the left corner, click your profile, hover your account and then copy the url link (chain icon). Paste on notepad and the account_name is in the https://<account_name>.snowflakecomputing.com/
 
 # Install dbt core and dbt-snowflake
+
+Open your directory project in visual studio and open the terminal. Before you install, create a python virtual environtment first.
+
+- Create VE named dbt-env
+
+```
+python -m venv dbt-env
+```
+
+- Activate the VE
+
+```
+dbt-env\Scripts\activate.ps1
+```
+
+- Install dbt core
+
+```
+python -m pip install dbt-core
+```
+
+- Install dbt-snowflake
+
+```
+python -m pip install dbt-snowflake
+```
+
+- Chek version
+
+```
+dbt --version
+```
+
+# Initialize dbt Project and Configure Snowflake Connection
+
+It's pretty simple to initialize dbt project, follow me below
+
+- Run dbt init command
+
+```
+dbt init
+```
+
+- Named the project 'dbt_snow' and then enter
+- Chose Snowflake as adapter by fill 1 in the promp
+- Enter your username
+- Enter your password for username
+- Role : DBTSNOW_ROLE
+- Warehouse : DBT_WH
+- Database : DBTSNOW_DB
+- Schema : DBTSNOW_SCHEMA
+- Threads : 10
+
+Test your configuration above by running this command, but makesure that you are in the fie of project.
+
+```
+cd dbt_snow
+```
+
+Run the command dbt config after you are in the dbt_snow directory
+
+```
+dbt config
+```
