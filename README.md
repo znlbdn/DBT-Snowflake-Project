@@ -3,6 +3,8 @@
 This project is for hand-ons learning at Digital Schola which is building an ELT process to load data from csv file to snowflake and visualizing the data to reporting service with DBT to transform data.
 In this project, I will use the SnowSQL CLI to load CSV file data to Snowflake.
 
+![etl architecture diagram](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/dbt_etl_diagram.png)
+
 # Table of Project Content
 
 1. Login to your Snowflake Account
