@@ -144,7 +144,7 @@ dbt init
 - Schema : DBTSNOW_SCHEMA
 - Threads : 10
 
-Test your configuration above by running this command, but makesure that you are in the fie of project.
+Test your configuration above by running this command, but makesure that you are in the file of project.
 
 ```
 cd dbt_snow
