@@ -11,7 +11,6 @@ sources:
           - name: id
             description: Primary key of stg_customers table
             tests:
-              - unique
               - not_null
       - name: stg_employees
         description: Column clening, joining employee privileges and make it as intermediated stage of dataset

@@ -1,0 +1,36 @@
+SELECT
+    order_id,
+    order_date,
+    employee_id,
+    customer_id,
+    product_id,
+    SUM(order_qty) as order_qty,
+    SUM(order_unit) as order_unit,
+    SUM(order_discount) as order_discount,
+    SUM(order_shipfee) as order_shipfee,
+    SUM(order_tax) as order_tax,
+    SUM({{ total_val('order_qty', 'order_unit', 'order_shipfee', 'order_tax') }}) as order_total_value,
+    order_status,
+    order_detail_status,
+    order_shipdate,
+    order_paiddate,
+    order_paymentype,
+    order_shipname,
+    order_shipcity,
+    order_shipcompany
+FROM 
+    {{ ref('int_orders') }}
+GROUP BY
+    order_id,
+    order_date,
+    employee_id,
+    customer_id,
+    product_id,
+    order_status,
+    order_detail_status,
+    order_shipdate,
+    order_paiddate,
+    order_paymentype,
+    order_shipname,
+    order_shipcity,
+    order_shipcompany

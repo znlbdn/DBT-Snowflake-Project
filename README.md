@@ -1,7 +1,6 @@
 # DBT Snowflake Projects
 
-This project is for hand-ons learning at Digital Schola which is building an ELT process to load data from csv file to snowflake and visualizing the data to reporting service with DBT to transform data.
-In this project, I will use the SnowSQL CLI to load CSV file data to Snowflake.
+This project is for building an ELT process to load data from csv file to snowflake and visualizing the data to reporting service with DBT. In this project, I will use the SnowSQL CLI to load CSV file data to Snowflake.
 
 ![etl architecture diagram](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/dbt_etl_diagram.png)
 
@@ -13,8 +12,14 @@ In this project, I will use the SnowSQL CLI to load CSV file data to Snowflake.
 4. Setup SnowSQL to Connect to your Snowflake Account
 5. Install dbt core and dbt-snowflake as adapter
 6. Initialize your project and setup Snowflake Configuration
-7. Creating Models (Staging, Warehouse, Marts)
+7. Creating Models (Bronze, Silver and Gold)
 8. Load Data to Snowflake with SnowSQL CLI
+9. Configure the source data in dbt
+10. Transform data (Silver and Gold)
+11. Testing (Generic Test)
+12. Create Documentation
+13. Dbt Lineage Graph
+14. Connecting to Power BI
 
 # Login to Snowflake Account
 
@@ -266,3 +271,98 @@ Then the result of executing the command above must be
 ![result put cust](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/result_cli_cust.png)
 
 with the same scenario, create all table target of your dataset first, then load the data that have been in the stage to your target table.
+
+# Configure the Source Data
+
+In my projects, the sources.yml file is to make a dataset refrerance from the bronze stage (staging area). Kindly you can open it in my models direcotry.
+
+# Transform Data
+
+Silver stage is the cleaned dataset from the bronze or staging area, and the silver stage including joins and column cleaning. After that the final dataset stage is on gold schema and ready to use in BI tools. Kindly you can open it in my models direcotry.
+
+After you finish building model within silver and gold, you can execute the command below
+
+```
+dbt run
+```
+
+# Testing (Generic Test)
+
+Generic Tests are put in place by calling a macro. Defined in a .yaml file within the folder where the model is. In my project the test including not_null, unique and relationships.
+
+```
+models:
+  - name: dim_customers
+    columns:
+      - name: cust_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('int_orders')
+              field: customer_id
+              severity: warn
+  - name: dim_employees
+    columns:
+      - name: emp_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: employee_id
+              severity: warn
+  - name: dim_products
+    columns:
+      - name: prod_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: product_id
+              severity: warn
+              to: ref('fact_inventory')
+              field: product_id
+              severity: warn
+              to: ref('fact_purchase_orders')
+              field: product_id
+              severity: warn
+
+```
+
+To test this, you can easily run this command below
+
+```
+dbt test
+```
+
+# Create Project Documentation
+
+Generating documentation in dbt is a crucial step in managing and maintaining a healthy data analytics workflow. It improves collaboration, understanding, and the overall quality of your data transformation processes.
+
+To generate the project documentation, execute this command below
+
+```
+dbt docs generate
+```
+
+# Dbt Web Server (Lineage Graph)
+
+Run the command below, to see the documentation within catalog and lineage graph of your model design befor
+
+```
+dbt docs serve --port 8001
+```
+
+![dbt-dag](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/dbt_dag.png)
+
+# Connet to Power BI
+
+By the end of the project, Power BI used to present the data that have been design before, by using the gold stage of data.
+
+- Kindly open the Power BI App (if you don't have already, you can donwload using this link https://www.microsoft.com/id-id/download/details.aspx?id=58494)
+- Open new report
+- Tab home, Get data
+- Choose Snowflake and the connect
+-

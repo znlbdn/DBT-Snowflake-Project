@@ -10,6 +10,6 @@ FROM
 LEFT JOIN
     {{ source('staging', 'stg_inventory_transaction_types') }} as t2
 ON 
-    t1.id = t2.id
+    t1.transaction_type = t2.id
 ORDER BY
     inv_id ASC

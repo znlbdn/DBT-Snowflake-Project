@@ -1,0 +1,37 @@
+models:
+  - name: dim_customers
+    columns:
+      - name: cust_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('int_orders')
+              field: customer_id
+              severity: warn
+  - name: dim_employees
+    columns:
+      - name: emp_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: employee_id
+              severity: warn
+  - name: dim_products
+    columns:
+      - name: prod_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: product_id
+              severity: warn
+              to: ref('fact_inventory')
+              field: product_id
+              severity: warn
+              to: ref('fact_purchase_orders')
+              field: product_id
+              severity: warn

@@ -1,3 +1,4 @@
+WITH int_orders_cte AS (
 SELECT
     t1.id as order_id,
     CAST(t1.order_date as date) as order_date,
@@ -37,3 +38,6 @@ ON
     t1.shipper_id = t5.id
 ORDER BY
     order_id ASC
+)
+SELECT * FROM int_orders_cte
+WHERE product_id is not null

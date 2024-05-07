@@ -4,9 +4,9 @@ SELECT
     t2.product_id as product_id,
     t2.quantity as purch_qty,
     t2.unit_cost as purch_unit,
-    t3.status as purch_status,
     t1.shipping_fee as purch_shipfee,
-    t1.taxes as purch_tax
+    t1.taxes as purch_tax,
+    t3.status as purch_status
 FROM
     {{ source('staging', 'stg_purchase_orders') }} as t1
 LEFT JOIN
