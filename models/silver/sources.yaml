@@ -1,0 +1,135 @@
+version: 2
+
+sources:
+  - name: staging
+    database: dbtsnow_db
+    schema: bronze
+    tables:
+      - name: stg_customers
+        description: Column cleaning and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_customers table
+            tests:
+              - unique
+              - not_null
+      - name: stg_employees
+        description: Column clening, joining employee privileges and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_employees table
+            tests:
+              - unique
+              - not_null
+      - name: stg_inventory_transactions
+        description: Column clening, joining inventory transaction types and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_inventory_transactions
+            tests:
+              - unique
+              - not_null
+      - name: stg_inventory_transaction_types
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_inventory_transaction_types
+            tests:
+              - unique
+              - not_null
+      - name: stg_invoices
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_invoices
+            tests:
+              - unique
+              - not_null
+      - name: stg_orders
+        description: Column clening, joining with orders status, orders tax status, order details status, order details and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_orders
+            tests:
+              - unique
+              - not_null
+      - name: stg_orders_status
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_orders_status
+            tests:
+              - unique
+              - not_null
+      - name: stg_orders_tax_status
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_orders_tax_status
+            tests:
+              - unique
+              - not_null
+      - name: stg_order_details
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_order_details
+            tests:
+              - unique
+              - not_null
+      - name: stg_order_details_status
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_order_details_status
+            tests:
+              - unique
+              - not_null
+      - name: stg_products
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_products
+            test:
+              - unique
+              - not_null
+      - name: stg_purchase_orders
+        description: Column clening, joining with purchase order details and status and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_purchase_orders
+            tests:
+              - unique
+              - not_null
+      - name: stg_purchase_order_status
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_purchase_order_status
+            tests:
+              - unique
+              - not_null
+      - name: stg_purchase_order_details
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_purchase_order_details
+            tests:
+              - unique
+              - not_null
+      - name: stg_shippers
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primry key of stg_shippers
+            tests:
+              - unique
+              - not_null
+      - name: stg_suppliers
+        description: Column clening and make it as intermediated stage of dataset
+        columns:
+          - name: id
+            description: Primary key of stg_suppliers
+            tests:
+              - unique
+              - not_null

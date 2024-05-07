@@ -31,9 +31,7 @@ models:
   dbt_snow:
     silver:
       schema: silver
-      snowflake_warehouse: dbt_wh
       +materialized: table
     gold:
       schema: gold
-      snowflake_warehouse: dbt_wh
       +materialized: view
