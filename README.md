@@ -13,6 +13,8 @@ In this project, I will use the SnowSQL CLI to load CSV file data to Snowflake.
 4. Setup SnowSQL to Connect to your Snowflake Account
 5. Install dbt core and dbt-snowflake as adapter
 6. Initialize your project and setup Snowflake Configuration
+7. Creating Models (Staging, Warehouse, Marts)
+8. Load Data to Snowflake with SnowSQL CLI
 
 # Login to Snowflake Account
 
@@ -55,7 +57,7 @@ SHOW GRANTS ON DATABASE DBTSNOW_DB;
 USE ROLE DBTSNOW_ROLE;
 
 -- Create Schema on Database DBTSNOW_DB
-CREATE OR REPLACE SCHEMA DBTSNOW_DB.DBTSNOW_SCHEMA;
+CREATE OR REPLACE SCHEMA DBTSNOW_DB.BRONZE;
 ```
 
 # Download SnowSQL CLI
@@ -155,3 +157,112 @@ Run the command dbt config after you are in the dbt_snow directory
 ```
 dbt config
 ```
+
+# Create Models (Staging, Warehouse and Mart)
+
+Open your dbt_projects.yml and configuring the model. In this projects, I will difine 3 models that refer to Medallion Architecture (Bronze, Silver and Gold). The bronze model have defined before to store data using CLI.
+
+- Bronze
+  Storing raw data loaded from your system's data (in my projects from CSV file).
+- Silver
+  Intermediate stage of dataset, joins and column cleaning.
+- Gold
+  Storing data modelled for analysis, like star schmea, aggregate tables.
+
+This is my dbt_project.yml configuration, and don't forget to create sub-folder in folder models
+
+```
+models:
+  dbt_snow:
+    silver:
+      schema: silver
+      snowflake_warehouse: dbt_wh
+      +materialized: table
+    gold:
+      schema: gold
+      snowflake_warehouse: dbt_wh
+      +materialized: view
+```
+
+# Load Data with SnowSQL CLI
+
+Open your terminal and connect with your Snowflake account using SnowSQL by following this command below
+
+```
+snowsql -a <account_name> -u <user_name>
+```
+
+When prompted enter your password. If you are already log in to your Snowflake account via SnowSQL, navigate to use your Warehouse, Databse, Schema and Role that use to store raw csv data (bronze).
+
+```
+USE WAREHOUSE DBT_WH; # press enter for every command
+USE DATABSE DBTSNOW_DB;
+USE SCHEMA BRONZE;
+USE ROLE DBTSNOW_ROLE;
+```
+
+Then create the destination table of raw data in bronze schma for every csv file data, for example, to create the customer table schema you can use the sql command below
+
+```
+CREATE OR REPLACE TABLE customer (
+    id               NUMBER,
+    company          VARCHAR(255),
+    last_name        VARCHAR(255),
+    first_name       VARCHAR(255),
+    email_address    VARCHAR(255),
+    job_title        VARCHAR(255),
+    business_phone   VARCHAR(20),
+    home_phone       VARCHAR(20),
+    mobile_phone     VARCHAR(20),
+    fax_number       VARCHAR(20),
+    address          VARCHAR(255),
+    city             VARCHAR(255),
+    state_province   VARCHAR(255),
+    zip_postal_code  VARCHAR(20),
+    country_region   VARCHAR(255),
+    web_page         VARCHAR(255),
+    notes            TEXT,
+    attachments      VARIANT
+); # then press enter to create customer table
+```
+
+After that, make sure your csv datasets in the same folder name, for I store all csv dataset in
+
+```
+D:\datasets\
+```
+
+Stage all csv datasets above, stage is used to store data file internally within snowflake (each user and table in Snowflake gets internal stage by default for staging data files). The command below is use to stage all my csv datasets internally
+
+```
+put file://D:\datasets\*.csv @~
+```
+
+- \*.csv --> store all csv dataset format to stage, the stage is define by @~
+
+  Then the result in your CLI must be
+  ![result put cli](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/result_cli_put.png)
+
+- To show all cvs in the stage @~ use the command below
+
+```
+list @~
+```
+
+Then the result in your CLI must be
+![result put list](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/result_cli_list.png)
+
+After that, use COPY INTO command to load your stage data to target table that created before, use the command below (example for customer table target from customer stage)
+
+```
+COPY INTO CUSTOMER
+    FROM @~
+    FILES = ('customer.csv.gz')
+    FILE_FORMAT= (type='ÇSV' field_delimiter=',' skip_header=1 compression= GZIP null_if='NULL' )
+    on_error= 'CONTINUE' # this means that you want to load as much data as possible
+```
+
+Then the result of executing the command above must be
+![result put cust](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/result_cli_cust.png)
+
+with the same scenario, create all table target of your dataset first, then load the data that have been in the stage to your target table.
