@@ -240,8 +240,8 @@ put file://D:\datasets\*.csv @~
 
 - \*.csv --> store all csv dataset format to stage, the stage is define by @~
 
-  Then the result in your CLI must be
-  ![result put cli](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/result_cli_put.png)
+Then the result in your CLI must be
+![result put cli](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/result_cli_put.png)
 
 - To show all cvs in the stage @~ use the command below
 
