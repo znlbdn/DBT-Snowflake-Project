@@ -163,7 +163,7 @@ Run the command dbt config after you are in the dbt_snow directory
 dbt config
 ```
 
-# Create Models (Staging, Warehouse and Mart)
+# Create Models (Bronze, Silver and Gold) Layers
 
 Open your dbt_projects.yml and configuring the model. In this projects, I will difine 3 models that refer to Medallion Architecture (Bronze, Silver and Gold). The bronze model have defined before to store data using CLI.
 
@@ -231,7 +231,7 @@ CREATE OR REPLACE TABLE customer (
 ); # then press enter to create customer table
 ```
 
-After that, make sure your csv datasets in the same folder name, for I store all csv dataset in
+After that, make sure your csv datasets in the same folder name, within this project, I store all csv dataset in
 
 ```
 D:\datasets\
@@ -381,4 +381,4 @@ By the end of the project, Power BI used to present the data that have been desi
 You can donwload the simpe dahsboard and using this simple .pbix file
 https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/PBI_Projects.pbix
 
-Thank you!
+# Thank you!
