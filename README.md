@@ -365,16 +365,16 @@ By the end of the project, Power BI used to present the data that have been desi
 - Open new report
 - Go to the home tab, and get data
 - Choose Snowflake and the connect
-  ![snow-connect](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect.jpg)
+  ![snow-connect](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/sow_connect.jpg)
 - Fill the form connection field (account name, warehouse, role and database)
-  ![snow-connect-form](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_form.jpg)
+  ![snow-connect-form](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/sow_connect_form.jpg)
 - Insert your username and password and then connect
 - In the navigator, select all tabel (fact and dimension view) within Gold Schema and load
-  ![snow-connect-data](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_data.jpg)
+  ![snow-connect-data](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/sow_connect_data.jpg)
 - In the connection string, select import option and ok
-  ![snow-connect-ok](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_ok.jpg)
+  ![snow-connect-ok](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/sow_connect_ok.jpg)
 - Make a relationship between fact and dimension
-  ![snow-connect-star](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_star.jpg)
+  ![snow-connect-star](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/sow_connect_star.jpg)
 - Dashboarding!
   ![simple-dashboard](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/simple_dashboard.jpg)
 
