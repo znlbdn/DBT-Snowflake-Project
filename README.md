@@ -379,6 +379,6 @@ By the end of the project, Power BI used to present the data that have been desi
   ![simple-dashboard](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/simple_dashboard.jpg)
 
 You can donwload the simpe dahsboard and using this simple .pbix file
-![PBI-Projects](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/PBI_Projects.pbix)
+https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/PBI_Projects.pbix
 
 Thank you!
