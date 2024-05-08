@@ -372,13 +372,13 @@ By the end of the project, Power BI used to present the data that have been desi
 - In the navigator, select all tabel (fact and dimension view) within Gold Schema and load
   ![snow-connect-data](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_data.jpg)
 - In the connection string, select import option and ok
-  ![connec-string](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_ok.jpg)
+  ![snow-connect-ok](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_ok.jpg)
 - Make a relationship between fact and dimension
-  ![table-relation](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_star.jpg)
+  ![snow-connect-star](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_star.jpg)
 - Dashboarding!
   ![simple-dashboard](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/simple_dashboard.jpg)
 
 You can donwload the simpe dahsboard and using this simple .pbix file
-![dashbaord](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/PBI_Projcts.pbix)
+![PBI-Projects](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/PBI_Projects.pbix)
 
 Thank you!
