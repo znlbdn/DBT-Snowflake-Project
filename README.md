@@ -355,7 +355,7 @@ Run the command below, to see the documentation within catalog and lineage graph
 dbt docs serve --port 8001
 ```
 
-![dbt-dag](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/dbt_dag.png)
+![dbt-dag](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/dbt-dag.png)
 
 # Connet to Power BI
 
@@ -363,6 +363,22 @@ By the end of the project, Power BI used to present the data that have been desi
 
 - Kindly open the Power BI App (if you don't have already, you can donwload using this link https://www.microsoft.com/id-id/download/details.aspx?id=58494)
 - Open new report
-- Tab home, Get data
+- Go to the home tab, and get data
 - Choose Snowflake and the connect
--
+  ![snow-connect](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect.jpg)
+- Fill the form connection field (account name, warehouse, role and database)
+  ![snow-connect-form](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_form.jpg)
+- Insert your username and password and then connect
+- In the navigator, select all tabel (fact and dimension view) within Gold Schema and load
+  ![snow-connect-data](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_data.jpg)
+- In the connection string, select import option and ok
+  ![connec-string](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_ok.jpg)
+- Make a relationship between fact and dimension
+  ![table-relation](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/snow_connect_star.jpg)
+- Dashboarding!
+  ![simple-dashboard](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/simple_dashboard.jpg)
+
+You can donwload the simpe dahsboard and using this simple .pbix file
+![dashbaord](https://github.com/znlbdn/DBT-Snowflake-Project/blob/master/assets/PBI_Projcts.pbix)
+
+Thank you!
